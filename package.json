@@ -1,0 +1,50 @@
+{
+  "name": "test-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "yarn code:type-check && vite build",
+    "build:heap": "NODE_OPTIONS=--max_old_space_size=8192 yarn build",
+    "serve": "vite preview",
+    "test": "jest --passWithNoTests",
+    "test:e2e": "yarn playwright test --config=tests-e2e/playwright.config.ts",
+    "test:e2e:dev1": "E2E_ENV=dev1 yarn test:e2e",
+    "test:func": "yarn playwright test --config=tests-functional/playwright.config.ts",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --watch",
+    "test:coverage": "jest --coverage",
+    "code:lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "code:format": "prettier --write ./src/**/**.{js,jsx,ts,tsx}",
+    "code:autofix": "yarn code:lint --fix && yarn code:format",
+    "code:type-check": "tsc --noEmit",
+    "codegen": "graphql-codegen --config ./codegen.yml"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@mui/material": "^5.12.3",
+    "@mui/styled-engine-sc": "^5.12.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/react-redux": "^7.1.25",
+    "@vitejs/plugin-react": "^4.0.0",
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.11.1",
+    "redux": "^4.2.1",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.5",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-svgr": "^3.2.0",
+    "vite-tsconfig-paths": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/react-dom": "^18.2.4",
+    "prettier": "^2.8.8"
+  }
+}
